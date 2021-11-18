@@ -2,8 +2,8 @@
 set -euo pipefail
 
 USERPUBKEY="-----BEGIN PUBLIC KEY-----
-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
-IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAERcjf1Q7NinxJzhpTqg3njrJpN92O
+CELbpwyzJmscSgXgEoEynG87rwyBZrRR3nyOz0dUzR71tiOb23Oy+LZoXg==
 -----END PUBLIC KEY-----"
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
