@@ -137,12 +137,6 @@ pipelineRun: "ssf-lab-pipelinerun-": spec: {
 	serviceAccountName: "pipeline-account"
 	workspaces: [{
 		name: "git-source"
-		volumeClaimTemplate: spec: {
-			accessModes: [
-				"ReadWriteMany",
-			]
-			resources: requests: storage: "1Gi"
-		}
 	}]
 }
 
