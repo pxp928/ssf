@@ -70,11 +70,24 @@ spire_apply \
   -selector k8s_sat:agent_ns:spire \
   -selector k8s_sat:agent_sa:spire-agent \
   -node
+
 spire_apply \
   -spiffeID spiffe://example.org/ns/default/sa/default \
   -parentID spiffe://example.org/ns/spire/sa/spire-agent \
   -selector k8s:ns:default \
   -selector k8s:sa:default
+
+spire_apply \
+  -spiffeID spiffe://example.org/ns/tekton-pipelines/sa/tekton-pipelines-controller \
+  -parentID spiffe://example.org/ns/spire/sa/spire-agent \
+  -selector k8s:ns:tekton-pipelines \
+  -selector k8s:sa:tekton-pipelines-controller
+
+spire_apply \
+  -spiffeID spiffe://example.org/ns/tekton-pipelines/sa/tekton-pipelines-webhook \
+  -parentID spiffe://example.org/ns/spire/sa/spire-agent \
+  -selector k8s:ns:tekton-pipelines \
+  -selector k8s:sa:tekton-pipelines-webhook
 
 # Configure a Workload Container to Access SPIRE.
 kubectl apply -f "${QUICKSTART_DIR}/client-deployment.yaml"
