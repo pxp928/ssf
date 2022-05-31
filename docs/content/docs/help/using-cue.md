@@ -1,20 +1,21 @@
 +++
 title = "Using CUE"
-description = "Working with CUE in the Secure Software Factory."
+description = "Working with CUE in Factory for Repeatable Secure Creation of Artifacts."
 sort_by = "weight"
 draft = false
 weight = 30
 template = "docs/page.html"
 
 [extra]
-lead = "Working with CUE in the Secure Software Factory."
+lead = "Working with CUE in Factory for Repeatable Secure Creation of Artifacts."
 toc = true
 top = false
 +++
 
 ## CUE Module Structure
 
-The top level of the Secure Software Factory (FRSCA) is structured as a
+The top level of Factory for Repeatable Secure Creation of Artifacts (FRSCA)
+is structured as a
 [CUE module](https://cuelang.org/docs/concepts/packages/) and follows the
 [schema/policy/data](https://cuelang.org/docs/concepts/packages/#file-organization)
 pattern for organizing the files.
