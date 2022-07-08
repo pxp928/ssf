@@ -6,6 +6,8 @@ frsca: pipeline: "pipeline-go-test": spec: {
 	workspaces: [{
 		name:     "pipeline-pvc"
 		optional: false
+	}, {
+		name:      "docker-secret"
 	}]
 	params: [{
 		name:        "image"
@@ -89,6 +91,9 @@ frsca: pipeline: "pipeline-go-test": spec: {
 		workspaces: [{
 			name:      "source"
 			workspace: "pipeline-pvc"
+		}, {
+			name:      "dockerconfig"
+			workspace: "docker-secret"
 		}]
 		params: [{
 			name:  "IMAGE"
@@ -145,7 +150,7 @@ frsca: pipelineRun: "pipelinerun-go-test-": {
 	spec: {
 		params: [{
 			name:  "image"
-			value: _APP_IMAGE
+			value: "us-east1-docker.pkg.dev/warm-archery-354518/python-helloworld/hello-world:latest"
 		}, {
 			name: "ARGS"
 			value: [
@@ -161,10 +166,15 @@ frsca: pipelineRun: "pipelinerun-go-test-": {
 				"0",
 			]
 		}]
+		serviceAccountName: "build-bot"
 		pipelineRef: name: "pipeline-go-test"
 		timeout: "1h0m0s"
 		workspaces: [{
 			name: "pipeline-pvc"
+			persistentVolumeClaim: claimName: "pipelinerun-go-test-source-ws-pvc"
+		}, {
+			name: "docker-secret"
+			configMap: name: "docker-config"
 		}]
 	}
 }

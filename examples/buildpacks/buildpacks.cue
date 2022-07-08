@@ -14,10 +14,10 @@ frsca: pipelineRun: "cache-image-pipelinerun-": spec: {
 		value: "true"
 	}, {
 		name:  "APP_IMAGE"
-		value: _APP_IMAGE
+		value: "us-east1-docker.pkg.dev/warm-archery-354518/python-helloworld/hello-world:latest"
 	}, {
 		name:  "imageUrl"
-		value: _APP_IMAGE
+		value: "us-east1-docker.pkg.dev/warm-archery-354518/python-helloworld/hello-world:latest"
 	}, {
 		name:  "imageTag"
 		value: "latest"
@@ -34,6 +34,7 @@ frsca: pipelineRun: "cache-image-pipelinerun-": spec: {
 		name: "ENV_VARS"
 		value: [""]
 	}]
+	serviceAccountName: "build-bot"
 	workspaces: [{
 		name:    "source-ws"
 		subPath: "source"
