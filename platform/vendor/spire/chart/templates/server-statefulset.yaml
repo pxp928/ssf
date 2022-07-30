@@ -33,7 +33,7 @@ spec:
         - name: spire-server
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: {{ .Values.image.repository }}/spire-server:{{ .Values.image.tag }}
+          image: ghcr.io/spiffe/tornjak-spire-server:1.1.1
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - -config

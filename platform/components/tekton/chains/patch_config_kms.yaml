@@ -5,5 +5,7 @@ data:
   signers.kms.auth.address: "http://vault.vault:8200"
   signers.kms.auth.oidc.path: jwt
   signers.kms.auth.oidc.role: "spire-chains-controller"
-  signers.kms.auth.spire.sock: "unix:///tmp/spire-agent/public/api.sock"
+  signers.kms.auth.spire.sock: "unix:///spiffe-workload-api/spire-agent.sock"
   signers.kms.auth.spire.audience: TESTING
+  spire.enabled: "true"
+  spire.socketPath: "unix:///spiffe-workload-api/spire-agent.sock"

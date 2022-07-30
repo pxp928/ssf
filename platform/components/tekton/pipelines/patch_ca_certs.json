@@ -1,55 +1,55 @@
 {
-  "spec": {
-    "template": {
-      "spec": {
-        "$setElementOrder/containers": [
-          {
-            "name": "tekton-pipelines-controller"
-          }
-        ],
-        "$setElementOrder/volumes": [
-          {
-            "name": "config-logging"
-          },
-          {
-            "name": "config-registry-cert"
-          },
-          {
-            "name": "ca-certs"
-          }
-        ],
-        "containers": [
-          {
-            "$setElementOrder/volumeMounts": [
+  "spec":{
+     "template":{
+        "spec":{
+           "$setElementOrder/containers":[
               {
-                "mountPath": "/etc/config-logging"
+                 "name":"tekton-pipelines-controller"
+              }
+           ],
+           "$setElementOrder/volumes":[
+              {
+                 "name":"config-logging"
               },
               {
-                "mountPath": "/etc/config-registry-cert"
+                 "name":"config-registry-cert"
               },
               {
-                "mountPath": "/etc/ssl/certs/"
+                 "name":"spiffe-workload-api"
               }
-            ],
-            "name": "tekton-pipelines-controller",
-            "volumeMounts": [
+           ],
+           "containers":[
               {
-                "mountPath": "/etc/ssl/certs/",
-                "name": "ca-certs",
-                "readOnly": true
+                 "$setElementOrder/volumeMounts":[
+                    {
+                       "mountPath":"/etc/config-logging"
+                    },
+                    {
+                       "mountPath":"/etc/config-registry-cert"
+                    },
+                    {
+                       "mountPath":"/spiffe-workload-api"
+                    }
+                 ],
+                 "name":"tekton-pipelines-controller",
+                 "volumeMounts":[
+                    {
+                       "mountPath":"/spiffe-workload-api",
+                       "name":"spiffe-workload-api",
+                       "readOnly":true
+                    }
+                 ]
               }
-            ]
-          }
-        ],
-        "volumes": [
-          {
-            "configMap": {
-              "name": "ca-certs"
-            },
-            "name": "ca-certs"
-          }
-        ]
-      }
-    }
+           ],
+           "volumes":[
+              {
+                 "csi":{
+                    "driver":"csi.spiffe.io"
+                 },
+                 "name":"spiffe-workload-api"
+              }
+           ]
+        }
+     }
   }
 }

@@ -23,6 +23,9 @@ spire_apply() {
 
 kubectl create namespace spire --dry-run=client -o yaml | kubectl apply -f -
 
+echo "Applying SPIFFE CSI Driver configuration..."
+kubectl apply -f "${GIT_ROOT}/platform/vendor/spire/spiffe-csi-driver.yaml"
+
 helm upgrade --install spire "${GIT_ROOT}/platform/vendor/spire/chart" \
   --values "${GIT_ROOT}/platform/components/spire/values.yaml" \
   --namespace spire --wait
@@ -41,4 +44,12 @@ spire_apply \
   -spiffeID spiffe://example.org/ns/tekton-chains/sa/tekton-chains-controller \
   -parentID spiffe://example.org/ns/spire/node/frsca \
   -selector k8s:ns:tekton-chains \
+  -selector k8s:pod-label:app:tekton-chains-controller \
   -selector k8s:sa:tekton-chains-controller
+spire_apply \
+  -spiffeID spiffe://example.org/ns/tekton-pipeline/sa/tekton-pipeline-controller \
+  -parentID spiffe://example.org/ns/spire/node/frsca \
+  -selector k8s:ns:tekton-pipelines \
+  -selector k8s:pod-label:app:tekton-pipelines-controller \
+  -selector k8s:sa:tekton-pipelines-controller \
+  -admin

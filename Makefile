@@ -33,7 +33,7 @@ setup-minikube: ## Setup a Kubernetes cluster using Minikube
 	bash platform/00-kubernetes-minikube-setup.sh
 
 .PHONY: setup-frsca
-setup-frsca: setup-certs setup-registry setup-tekton-chains setup-spire setup-vault
+setup-frsca: setup-certs setup-spire setup-registry setup-tekton-chains setup-vault
 
 .PHONY: setup-certs
 setup-certs: ## Setup certificates used by vault and spire

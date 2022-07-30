@@ -15,7 +15,7 @@
             "name": "oidc-info"
           },
           {
-            "name": "spire-agent-socket"
+            "name": "spiffe-workload-api"
           }
         ],
         "containers": [
@@ -28,25 +28,25 @@
                 "mountPath": "/var/run/sigstore/cosign"
               },
               {
-                "mountPath": "/tmp/spire-agent/public"
+                "mountPath": "/spiffe-workload-api"
               }
             ],
             "name": "tekton-chains-controller",
             "volumeMounts": [
               {
-                "mountPath": "/tmp/spire-agent/public",
-                "name": "spire-agent-socket"
+                "mountPath":"/spiffe-workload-api",
+                "name":"spiffe-workload-api",
+                "readOnly":true
               }
             ]
           }
         ],
         "volumes": [
           {
-            "hostPath": {
-              "path": "/run/spire/sockets",
-              "type": "DirectoryOrCreate"
-            },
-            "name": "spire-agent-socket"
+            "csi":{
+              "driver":"csi.spiffe.io"
+           },
+           "name":"spiffe-workload-api"
           }
         ]
       }
