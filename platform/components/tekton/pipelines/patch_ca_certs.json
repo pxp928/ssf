@@ -12,9 +12,6 @@
             "name": "config-logging"
           },
           {
-            "name": "config-registry-cert"
-          },
-          {
             "name": "ca-certs"
           }
         ],
@@ -23,9 +20,6 @@
             "$setElementOrder/volumeMounts": [
               {
                 "mountPath": "/etc/config-logging"
-              },
-              {
-                "mountPath": "/etc/config-registry-cert"
               },
               {
                 "mountPath": "/etc/ssl/certs/"
